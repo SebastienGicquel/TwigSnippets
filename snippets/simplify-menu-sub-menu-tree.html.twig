@@ -1,0 +1,20 @@
+{#
+ use Simplify Menu Module and then you can render menu tree as an array in twig template like
+#}
+
+{% set items = simplify_menu('main') %}
+{% for menu_item in items.menu_tree %}
+    <li>
+        <a href="{{ menu_item.url }}">{{ menu_item.text }}</a>
+        {% if submenuLevel1Item.description %}
+            <ul>
+                {% for sub_menu_item in menu_item.submenu %}
+                    <li>
+                        <a href="{{ sub_menu_item.url }}">{{ sub_menu_item.text }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endfor %}
+
